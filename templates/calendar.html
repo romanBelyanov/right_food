@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Навигационная панель с иконками</title>
+  <link type="text/css" href="{{ url_for('static', filename='css/styleMain.css') }}" rel="stylesheet">
+</head>
+<body>
+      <div class="maincontent">
+        <div class="title">Календарь планирования</div>
+      </div>
+      <footer class="navigation">
+        <div class="buts">
+          <input type="image" id = "nav_but" src="{{ url_for('static', filename='img/products.png') }}" onclick="window.location.href='/products'">
+          <input type="image" id = "nav_but" src="{{ url_for('static', filename='img/main.png') }}" onclick="window.location.href='/main'">
+          <input type="image" id = "nav_but" src="{{ url_for('static', filename='img/calendar_act.png') }}" onclick="window.location.href='/calendar'">
+          <input type="image" id = "nav_but" src="{{ url_for('static', filename='img/etc.png') }}" onclick="window.location.href='/etc'">
+        </div>
+      </footer>
+      <div class="cardStack">
+        <a id="breakfastLink" class="card" href="/breakfast" onclick="showDishDescription1(event)">
+          {% if df_breakfast is not none and not df_breakfast.empty %}
+            <div class="selected-dish-card1">{{ df_breakfast["Dish Name"].iloc[0] }}</div>
+          {% else %}
+            Нажмите, чтобы выбрать завтрак
+          {% endif %}
+        </a>
+        <a id="lunchLink" class="card" href="/lunch" onclick="showDishDescription2(event)">
+          {% if df_lunch is not none and not df_lunch.empty %}
+              <div class="selected-dish-card2">{{ df_lunch["Dish Name"].iloc[0] }}</div>
+          {% else %}
+              Нажмите, чтобы выбрать обед
+          {% endif %}
+        </a>
+        <a id="dinnerLink" class="card" href="/dinner" onclick="showDishDescription3(event)">
+          {% if df_dinner is not none and not df_dinner.empty %}
+              <div class="selected-dish-card3">{{ df_dinner["Dish Name"].iloc[0] }}</div>
+          {% else %}
+              Нажмите, чтобы выбрать ужин
+          {% endif %}
+        </a>
+      </div>
+      <div id="recipeModal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeRecipeModal1()">      
+              <img src="{{ url_for('static', filename='img/arrback.png') }}">
+            </span>
+            {% if df_breakfast is not none and not df_breakfast.empty %}
+              <img src="{{ df_breakfast["Image main"].iloc[0] }}">
+              <h2>{{ df_breakfast["Dish Name"].iloc[0] }}</h2>
+              <h2>Ингридиенты:</h2>
+              <p>{{ df_breakfast["Ingredients"].iloc[0] }}</p>
+              <h2>Рецепт:</h2>
+              <p>{{ split_text_to_lines(df_breakfast["Recipe"].iloc[0]) | safe  }}</p>
+              <h2>Калории:</h2>
+              <p>{{ df_breakfast["Calories"].iloc[0] }}</p>
+            {% endif %}
+        </div>
+      </div>
+      <div id="recipeModal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeRecipeModal2()">      
+              <img src="{{ url_for('static', filename='img/arrback.png') }}">
+            </span>
+            {% if df_lunch is not none and not df_lunch.empty %}
+              <img src="{{ df_lunch["Image main"].iloc[0] }}">
+              <h2>{{ df_lunch["Dish Name"].iloc[0] }}</h2>
+              <h2>Ингридиенты:</h2>
+              <p>{{ df_lunch["Ingredients"].iloc[0] }}</p>
+              <h2>Рецепт:</h2>
+              <p>{{ split_text_to_lines(df_lunch["Recipe"].iloc[0]) | safe  }}</p>
+              <h2>Калории:</h2>
+              <p>{{ df_lunch["Calories"].iloc[0] }}</p>
+            {% endif %}
+        </div>
+      </div>
+      <div id="recipeModal3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeRecipeModal3()">      
+              <img src="{{ url_for('static', filename='img/arrback.png') }}">
+            </span>
+            {% if df_dinner is not none and not df_dinner.empty %}
+              <img src="{{ df_dinner["Image main"].iloc[0] }}">
+              <h2>{{ df_dinner["Dish Name"].iloc[0] }}</h2>
+              <h2>Ингридиенты:</h2>
+              <p>{{ df_dinner["Ingredients"].iloc[0] }}</p>
+              <h2>Рецепт:</h2>
+              <p>{{ split_text_to_lines(df_dinner["Recipe"].iloc[0]) | safe  }}</p>
+              <h2>Калории:</h2>
+              <p>{{ df_dinner["Calories"].iloc[0] }}</p>
+            {% endif %}
+        </div>
+      </div>
+    
+      <script>
+      function showDishDescription1(event) {
+    var target = event.target;
+
+    // Проверяем, содержит ли элемент класс "selected-dish-card1"
+    if (target.classList.contains('selected-dish-card1')) {
+      // Открываем модальное окно
+      var modal = document.getElementById('recipeModal1');
+      modal.style.display = 'block';
+
+      window.onclick = function (event) {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      }
+
+      // Предотвращаем переход по ссылке
+      event.preventDefault();
+    }
+  }
+
+  function showDishDescription2(event) {
+    var target = event.target;
+
+    // Проверяем, содержит ли элемент класс "selected-dish-card2"
+    if (target.classList.contains('selected-dish-card2')) {
+      // Открываем модальное окно
+      var modal = document.getElementById('recipeModal2');
+      modal.style.display = 'block';
+
+      window.onclick = function (event) {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      }
+
+      // Предотвращаем переход по ссылке
+      event.preventDefault();
+    }
+  }
+  function showDishDescription3(event) {
+    var target = event.target;
+
+    // Проверяем, содержит ли элемент класс "selected-dish-card2"
+    if (target.classList.contains('selected-dish-card3')) {
+      // Открываем модальное окно
+      var modal = document.getElementById('recipeModal3');
+      modal.style.display = 'block';
+
+      window.onclick = function (event) {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      }
+
+      // Предотвращаем переход по ссылке
+      event.preventDefault();
+    }
+  }
+
+  function closeRecipeModal1() {
+    var modal = document.getElementById('recipeModal1');
+    modal.style.display = 'none';
+  }
+
+  function closeRecipeModal2() {
+    var modal = document.getElementById('recipeModal2');
+    modal.style.display = 'none';
+  }
+  function closeRecipeModal3() {
+    var modal = document.getElementById('recipeModal3');
+    modal.style.display = 'none';
+  }
+      </script>
+    </body>
+</html>

@@ -1,0 +1,327 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
+body
+{
+
+  margin: 0px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+
+}
+.maincontent
+{
+  display: flex;
+  flex-direction: row;
+
+}
+.container 
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.back
+{
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+
+
+@media screen and (max-height: 720px) and (max-width: 360px) {
+  .center-container img {
+      max-width: 90%; /* Увеличьте размер изображения для мобильных устройств */
+  }
+}
+
+
+.navigation {
+  background-color: rgba(43, 198, 160, 1);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top-left-radius: 20px; /* Закругление верхнего левого угла */
+  border-top-right-radius: 20px;  position: fixed;
+  bottom: 0px; /* Отступ от нижнего края */
+  left: 0;
+  right: 0;
+  height: 8%;
+}
+
+.buts
+{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.title
+{
+  color: rgba(43, 198, 160, 1);
+  font-size: 80px;
+  padding-top: 58px; 
+  padding-left: 58px;
+  font-family: 'Nunito';
+  font-weight: 900;
+}
+
+.subtitle
+{
+  padding-top: 75px; 
+}
+
+
+input[type="image"] {
+  width: 8%;
+  height: 8%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  cursor: pointer;
+}
+
+button[type="button"] 
+{
+  background-color: transparent; 
+  border: none; 
+  cursor: pointer;
+}
+
+
+.cardStack
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 50px;
+  height: 1200px;
+}
+.card
+{
+  width: 100%;
+  height: 60%;
+  background: rgb(227, 227, 227);
+  padding-left: 58px;
+  font-family: 'Nunito';
+  font-weight: 900; 
+  font-size: 50px;
+  color: rgb(43,198,160);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+  margin: 30px;
+  padding: 25px;
+  padding-top: 130px;
+  border-radius: 80px;
+  text-decoration: none;
+}
+
+
+
+
+.dark_blue
+{
+  width: 90%;
+  height: 20%;
+  font-family: 'Nunito';
+  font-weight: 500;
+  font-size: 50px;
+  background-color: rgb(56,96,226);
+  color: rgb(255, 255, 255);
+  border: none;
+  display: flex;
+  padding: 50px;
+  border-radius: 60px;
+  text-decoration: none;
+  flex-direction: row;
+  align-items: center; 
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: flex-start;
+  margin: 30px;
+}
+
+#allProducts,
+#favoriteProducts
+{
+  display: flex;
+  align-items: center;
+}
+.card1
+{
+  width: 90%;
+  height: auto;
+  background: none;
+  font-family: 'Nunito';
+  font-weight: 500;
+  font-size: 50px;
+  color: rgba(89, 197, 235);
+  border: rgba(227, 227, 227) solid 5px;
+  display: flex;
+  margin: 30px;
+  padding: 25px;
+  border-radius: 80px;
+  text-decoration: none;
+  flex-direction: row;
+  align-items: center; 
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-evenly;
+  flex: 1;
+}
+
+
+.card1 img 
+{
+  width: 100px;
+  height: auto;
+  margin: 10px;
+}
+
+.card1 p {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  flex-wrap: wrap;
+  overflow: hidden;
+  font-size: 60px;
+  flex: 1; /* Allow the text to take up the available space and shrink if needed */
+}
+.star
+{
+  background-image: url('/static/img/star1.png');
+  background-size: cover;
+  width: 105px;
+  height: 105px;
+  margin-left: 0;
+
+}
+
+.star.clicked {
+  background-image: url('/static/img/star2.png'); /* Измененное изображение после нажатия */
+}
+.light_blue
+{
+  font-family: 'Nunito';
+  font-weight: 500;
+  font-size: 50px;
+  margin: 30px;
+  border-radius: 60px;
+  width: 90%;
+  height: 20%;
+  flex-direction: row;
+  padding: 50px;
+  color: white;
+  font-weight: 500;
+  background-color: rgb(89, 197, 235);
+}
+
+.buttons 
+{
+  padding: 75px;
+  justify-content: center;
+  align-items: center;
+
+}
+.mainbut
+{
+  background: none;
+  padding-left: 58px;
+  font-family: 'Nunito';
+  font-weight: 900;
+  font-size: 55px;
+  color: rgb(56,96,226);
+  border: none;
+  padding: 15px;
+}
+
+
+.active {
+  background:rgb(227,227,227);
+  border-radius: 50px;
+}
+
+
+
+.list_but
+{
+  margin-top: 50px;
+  margin-left: 50px;
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  flex-direction: row;
+}
+
+.scrollable-container {
+  height: 1500px;  
+  width: 100%;
+  overflow-y: scroll; 
+}
+
+
+.glass
+{
+  background-image: url('/static/img/glass7.png');
+  background-size: cover;
+  width: 80px;
+  height: 100px;
+  background-color: transparent; 
+  border: none; 
+  cursor: pointer;
+  margin: 5px;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(255, 255, 255);
+}
+
+.modal-content {
+  background-color: #ffffff;
+  font-family: 'Nunito';
+  font-weight: 500;
+  font-size: 50px;
+  margin: 0 auto; /* Обновленный отступ от краев */
+  padding: 20px;
+  width: 100%; /* Обновленная ширина */
+  height: 100%; /* Обновленная высота */
+  box-sizing: border-box;
+  color:rgb(89, 197, 235);
+}
+.selected-dish-card1,
+.selected-dish-card2,
+.selected-dish-card3
+ {
+  background-color: rgb(89, 197, 235);
+  font-family: 'Nunito';
+  font-weight: 500;
+  font-size: 50px;
+  color: #ffffff; /* Задайте цвет для выбранного блюда */
+  width: 100%;
+  height: auto; 
+  border-radius: 60px; /* Задайте размер для выбранного блюда */
+  padding: 30px;
+  margin-bottom: 30px;
+}
+.profile
+{
+  display: flex;
+  flex-direction: column;
+  font-family: 'Nunito';
+  font-weight: 500;
+  font-size: 50px;
+  color:rgb(89, 197, 235);
+  margin-left: 50px;
+}

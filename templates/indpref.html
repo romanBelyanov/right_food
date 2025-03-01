@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AmetCare</title>
+  <link type="text/css" href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+  <footer class="nav1">
+    <button id="footer-register-button" type="button">
+      <img src="{{ url_for('static', filename='img/next.png') }}" class= "back_img">
+    </button>
+  </footer>
+  <a href="/userinfo" class="back">
+    <img src="{{ url_for('static', filename='img/arrback.png') }}">
+  </a> 
+  <div class="container">
+    <div id="slText">Выберите ваши личные предпочтения</div>
+    <form action="{{ url_for('indpref') }}" id="registration-form" method="post">
+    <div class="scrollable-container">
+      <label class="custom-checkbox">
+        <input type="checkbox"  class="check_input" name="preferences" value="Хлебобулочные изделия">
+        <span class="check_box"></span>
+        <span class="check_text">Хлебобулочные изделия</span>
+      </label>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input" name="preferences" value="Кисломолочная продукция">
+        <span class="check_box"></span>
+        <span class="check_text">Кисломолочная продукция</span>
+      </label>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input" name="preferences" value="Сладкие блюда">
+        <span class="check_box"></span>
+        <span class="check_text">Сладкие блюда</span>
+      </label>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input" name="preferences" value="Острые блюда">
+        <span class="check_box"></span>
+        <span class="check_text">Острые блюда</span>
+      </label>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input" name="preferences" value="Овощные блюда">
+        <span class="check_box"></span>
+        <span class="check_text">Овощные блюда</span>
+      </label>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input" name="preferences" value="Морепродукты">
+        <span class="check_box"></span>
+        <span class="check_text">Морепродукты</span>
+      </label>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input" name="preferences" value="Мясные блюда">
+        <span class="check_box"></span>
+        <span class="check_text">Мясные блюда</span>
+      </label>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input" name="preferences" value="Жареные блюда">
+        <span class="check_box"></span>
+        <span class="check_text">Жареные блюда</span>
+      </label>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input" name="preferences" value="Блюда на пару">
+        <span class="check_box"></span>
+        <span class="check_text">Блюда на пару</span>
+      </label>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input" name="preferences" value="Итальянская кухня">
+        <span class="check_box"></span>
+        <span class="check_text">Итальянская кухня</span>
+      </label>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input" name="preferences" value="Японская кухня">
+        <span class="check_box"></span>
+        <span class="check_text">Японская кухня</span>
+      </label>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input" name="preferences" value="Французская кухня">
+        <span class="check_box"></span>
+        <span class="check_text">Французская кухня</span>
+      </label>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input" name="preferences" value="Китайская кухня">
+        <span class="check_box"></span>
+        <span class="check_text">Китайская кухня</span>
+      </label>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input" name="preferences" value="Мексиканская кухня">
+        <span class="check_box"></span>
+        <span class="check_text">Мексиканская кухня</span>
+      </label>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input" name="preferences" value="Индонезийская кухня">
+        <span class="check_box"></span>
+        <span class="check_text">Индонезийская кухня</span>
+      </label>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input" name="preferences" value="Испанская кухня">
+        <span class="check_box"></span>
+        <span class="check_text">Испанская кухня</span>
+      </label>
+      <button type="submit" style="display: none;"></button>
+    </form>  
+    </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const footerRegisterButton = document.getElementById('footer-register-button');
+    const hiddenSubmitButton = document.querySelector('#registration-form button[type="submit"]');
+  
+    footerRegisterButton.addEventListener('click', function() {
+      hiddenSubmitButton.click();
+    });
+  });
+  </script>
+</body>
+</html>

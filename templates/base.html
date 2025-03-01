@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Навигационная панель с иконками</title>
+  <link type="text/css" href="{{ url_for('static', filename='css/styleMain.css') }}" rel="stylesheet">
+</head>
+<body>
+  <div class="content">
+    <div class="title">Мои продукты</div>
+  </div>
+
+  <footer class="navigation">
+    <div class="buts">
+      <input type="image" id = "nav_bat" src="{{ url_for('static', filename='img/products_act.png') }}" onclick="window.location.href='http://127.0.0.1:5000/products'">
+      <input type="image" id = "nav_bat" src="{{ url_for('static', filename='img/main.png') }}" onclick="window.location.href='http://127.0.0.1:5000/main'">
+      <input type="image" id = "nav_bat" src="{{ url_for('static', filename='img/calendar.png') }}" onclick="window.location.href='http://127.0.0.1:5000/calendar'">
+      <input type="image" id = "nav_bat" src="{{ url_for('static', filename='img/etc.png') }}" onclick="window.location.href='http://127.0.0.1:5000/etc'">
+    </div>
+  </footer>
+
+</body>
+</html>

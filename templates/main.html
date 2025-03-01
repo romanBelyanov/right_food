@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Навигационная панель с иконками</title>
+  <link type="text/css" href="{{ url_for('static', filename='css/styleMain.css') }}" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+  <div class="maincontent">
+    <div class="title">Главная</div>
+  </div>
+  <footer class="navigation">
+    <div class="buts">
+      <input type="image" id = "nav_but" src="{{ url_for('static', filename='img/products.png') }}" onclick="window.location.href='/products'">
+      <input type="image" id = "nav_but" src="{{ url_for('static', filename='img/main_act.png') }}" onclick="window.location.href='/main'">
+      <input type="image" id = "nav_but" src="{{ url_for('static', filename='img/calendar.png') }}" onclick="window.location.href='/calendar'">
+      <input type="image" id = "nav_but" src="{{ url_for('static', filename='img/etc.png') }}" onclick="window.location.href='/etc'">
+    </div>
+  </footer>
+  <div class="cardStack">
+    <div class ="light_blue">
+      Ваша суточная норма калорий: {{user.daily_cal}} ккал
+    </div>
+    <div class ="dark_blue">
+      Ваша норма воды на сегодня: 
+      <div class="glass" glass-id="{{ i }}"></div>
+      x{{daily_water}} = {{daily_water1}} литра
+    </div>
+  </div>
+  </body>
+</html>

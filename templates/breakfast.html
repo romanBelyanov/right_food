@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Навигационная панель с иконками</title>
+  <link type="text/css" href="{{ url_for('static', filename='css/styleMain.css') }}" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+</head>
+<body>
+  <div class = "maincontent">
+    <a href="/calendar" class="back">
+      <img src="{{ url_for('static', filename='img/arrback.png') }}">
+    </a> 
+    <div class="title subtitle">Завтраки</div>
+  </div>
+  <footer class="navigation">
+    <div class="buts">
+      <input type="image" id = "nav_but" src="{{ url_for('static', filename='img/products.png') }}" onclick="window.location.href='/products'">
+      <input type="image" id = "nav_but" src="{{ url_for('static', filename='img/main.png') }}" onclick="window.location.href='/main'">
+      <input type="image" id = "nav_but" src="{{ url_for('static', filename='img/calendar_act.png') }}" onclick="window.location.href='/calendar'">
+      <input type="image" id = "nav_but" src="{{ url_for('static', filename='img/etc.png') }}" onclick="window.location.href='/etc'">
+    </div>
+  </footer>
+
+    <div class = "list_but">
+        <button class = "mainbut active" onclick="showAllProducts()">Весь список</button>
+        <button class = "mainbut" onclick="showFavoriteProducts()">Избранные</button>
+    </div>
+    <div id="allProducts">
+      <div class = "scrollable-container">
+        {% for t in range(l) %} 
+        <form id="selectedDishForm" method="post">
+          <div class="card1" onclick="showDishDescription('{{ t }}', event)">
+            <p>{{table["Dish Name"].iloc[t]}}</p>
+              <button onclick="sendSelectedDishToServer('{{ t }}')" type="button">
+                <img src="{{ url_for('static', filename='img/plus.png') }}">
+              </button>
+            </div>
+          </form>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div id="favoriteProducts" style="display:none;">
+        <h2>Избранные товары</h2>
+        <!-- Здесь выводите избранные товары -->
+    </div>
+    {% for t in range(l) %}
+    <div id="recipeModal{{ t }}" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeRecipeModal('{{ t }}')">      
+              <img src="{{ url_for('static', filename='img/arrback.png') }}">
+            </span>
+            <img src="{{ table["Image main"].iloc[t] }}">
+            <h2>{{ table["Dish Name"].iloc[t] }}</h2>
+            <h2>Ингридиенты:</h2>
+            <p>{{ table["Ingredients"].iloc[t] }}</p>
+            <h2>Рецепт:</h2>
+            <p>{{ split_text_to_lines(table["Recipe"].iloc[t]) | safe }}</p>
+            <h2>Калории:</h2>
+            <p>{{ table["Calories"].iloc[t] }}</p>
+        </div>
+    </div>
+    {% endfor %}
+
+<script>
+    function showAllProducts() {
+            document.getElementById('allProducts').style.display = 'block';
+            document.getElementById('favoriteProducts').style.display = 'none';
+            document.querySelector('.list_but .active').classList.remove('active');
+            event.target.classList.add('active');
+        }
+
+        function showFavoriteProducts() {
+            document.getElementById('allProducts').style.display = 'none';
+            document.getElementById('favoriteProducts').style.display = 'block';
+            document.querySelector('.list_but .active').classList.remove('active');
+            event.target.classList.add('active');
+        }
+        function changeBackground() 
+        {
+            var starButton = document.querySelector('.star');
+            starButton.classList.toggle('clicked');
+        }
+        var selectedDish = null;
+        var tableData = {{ table.to_dict(orient='records') | tojson | safe }};
+
+        function showDishDescription(index, event) {
+            var targetTagName = event.target.tagName.toLowerCase();
+
+            // Проверяем, что клик не был на кнопке или изображении внутри карточки
+            if (targetTagName !== 'button' && targetTagName !== 'img') {
+                // Остальной код для отображения модального окна
+                document.getElementById('recipeModal' + index).style.display = 'block';
+            }
+        }
+
+        function closeRecipeModal(index) {
+            // Остальной код для закрытия модального окна
+            document.getElementById('recipeModal' + index).style.display = 'none';
+        }
+
+        function sendSelectedDishToServer(index) {
+            selectedDish = tableData[index];
+
+            if (selectedDish) {
+                fetch('/process_selected_dish', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ selectedDish }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            }
+        }
+        $(document).ready(function() {
+        $('#selectedDishForm').submit(function(event) {
+            event.preventDefault(); // Предотвращаем стандартное действие отправки формы
+
+            var formData = {}; // Создаем объект для хранения данных формы
+            // Собираем данные из формы (например, название рецепта)
+            // Пример: formData['dishName'] = $('#dishNameInput').val();
+
+            // Отправляем данные на сервер с помощью AJAX-запроса
+            $.ajax({
+                type: 'POST',
+                url: '/process_selected_dish',
+                contentType: 'application/json',
+                data: JSON.stringify(formData), // Преобразуем данные в JSON-строку
+                success: function(response) {
+                    console.log(response.message); // Выводим сообщение об успешной отправке в консоль
+                    // Добавьте код для обновления данных на странице, если необходимо
+                },
+                error: function(error) {
+                    console.error('Ошибка отправки данных:', error);
+                }
+            });
+        });
+    });
+
+</script>
+    </body>
+</html>

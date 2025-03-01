@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AmetCare</title>
+  <link type="text/css" href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+  <footer class="nav1">
+    <a href="http://127.0.0.1:5000/indpref" class="but">
+      <img src="{{ url_for('static', filename='img/next.png') }}" class="center-image"  >
+    </a> 
+  </footer>
+  <a href="http://127.0.0.1:5000/start2" class="back">
+    <img src="{{ url_for('static', filename='img/arrback.png') }}" class="center-image">
+  </a> 
+  <div class="container">
+    <div id="slText">Выберите ваши аллергии непереносимость </div>
+    <div class="scrollable-container">
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input">
+        <span class="check_box"></span>
+        <span class="check_text">Яблоки</span>
+      </label>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input">
+        <span class="check_box"></span>
+        <span class="check_text">Глютен</span>
+      </label>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input">
+        <span class="check_box"></span>
+        <span class="check_text">Лактоза</span>
+      </label>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input">
+        <span class="check_box"></span>
+        <span class="check_text">Морепродукты</span>
+      </label>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input">
+        <span class="check_box"></span>
+        <span class="check_text">Соя</span>
+      </label>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input">
+        <span class="check_box"></span>
+        <span class="check_text">Яйцо</span>
+      </label>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input">
+        <span class="check_box"></span>
+        <span class="check_text">Орехи</span>
+      </label>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input">
+        <span class="check_box"></span>
+        <span class="check_text">Арахис</span>
+      </label>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input">
+        <span class="check_box"></span>
+        <span class="check_text">Грибы</span>
+      </label>
+      <label class="custom-checkbox">
+        <input type="checkbox" class="check_input">
+        <span class="check_box"></span>
+        <span class="check_text">Цитрусовые</span>
+      </label>
+    </div>
+</div>
+</body>
+</html>

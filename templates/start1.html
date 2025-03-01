@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AmetCare</title>
+  <link type="text/css" href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <img src="{{ url_for('static', filename='img/main_logo.png') }}" class="center-image">
+    <p class="center-text">Виртуальная забота о вашем питании</p>
+</div>
+</body>
+<script>
+  function redirectToSecondPage() {
+    setTimeout(function() {
+        window.location.href = "/start2";
+    }, 2000); 
+}
+window.onload = redirectToSecondPage;
+
+</script>
+</html>
