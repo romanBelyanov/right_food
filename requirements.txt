@@ -4,3 +4,4 @@ Flask-Login
 Flask-Bcrypt
 Flask-Caching
 pandas
+aiogram==2.14.3
